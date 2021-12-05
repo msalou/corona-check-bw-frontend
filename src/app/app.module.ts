@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CoronaFormularComponent } from './corona-formular/corona-formular.component';
+import { CoronaFormularComponent } from './components/corona-formular/corona-formular.component';
 
 @NgModule({
   declarations: [
@@ -10,8 +11,10 @@ import { CoronaFormularComponent } from './corona-formular/corona-formular.compo
     CoronaFormularComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
