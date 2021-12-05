@@ -8,16 +8,23 @@ import { Alarmstufe } from '../models/Alarmstufe';
 })
 export class CoronaFormularService {
 
+  private URL = 'http://localhost:8080';      // ToDo: Refactor hardcoded URL
+
   constructor(private httpClient: HttpClient) {}
 
   getCurrentAlarmstufe() {
     return this.httpClient
-      .get('http://localhost:8080/getCurrentAlarmstufe'); // ToDo: Refactor hardcoded URL
+      .get(this.URL + '/getCurrentAlarmstufe');
   }
 
   getLebensbereiche() {
     return this.httpClient
-      .get('http://localhost:8080/getLebensbereiche'); // ToDo: Refactor hardcoded URL
+      .get(this.URL + '/getLebensbereiche');
+  }
+
+  getMassnahmeByLebensbereich(selectedLebensbereichId: number) {
+    return this.httpClient
+      .get(this.URL + '/getMassnahmeByLebensbereich/' + selectedLebensbereichId);
   }
 
 }

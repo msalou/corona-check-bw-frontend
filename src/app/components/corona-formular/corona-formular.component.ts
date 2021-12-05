@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Alarmstufe } from 'src/app/models/Alarmstufe';
+import { Massnahme } from 'src/app/models/Massnahme';
 import { Lebensbereich } from 'src/app/models/Lebensbereich';
 import { CoronaFormularService } from 'src/app/services/corona-formular.service';
 
@@ -12,7 +13,8 @@ export class CoronaFormularComponent implements OnInit {
 
   alarmstufe: Alarmstufe | undefined;
   lebensbereiche: Lebensbereich[] | undefined;
-  selectedLebensbereichId: number | undefined;
+  selectedLebensbereichId!: number;
+  massnahme: Massnahme | undefined;
 
   constructor(private coronaFormularService: CoronaFormularService) {}
 
@@ -25,7 +27,9 @@ export class CoronaFormularComponent implements OnInit {
     })
   }
 
-  submit(): void {
-    this.alarmstufe = this.alarmstufe;
+  onClick(): void {
+    this.coronaFormularService.getMassnahmeByLebensbereich(this.selectedLebensbereichId).subscribe((data: any) => {
+      this.massnahme = data;
+    })
   }
 }

@@ -8,4 +8,6 @@
   <input [(ngModel)]="selectedLebensbereichId" type="radio" [value]="lebensbereich.id"/>{{ lebensbereich.description }}
 </div>
 
-{{ selectedLebensbereichId }}
+<button type="button" [disabled]="!selectedLebensbereichId" (click)="onClick()">Senden</button>
+
+<h4>{{ massnahme?.beschreibung }}</h4>
