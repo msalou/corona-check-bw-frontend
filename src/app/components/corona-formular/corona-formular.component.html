@@ -3,4 +3,9 @@
 <h4>{{ alarmstufe?.label }}</h4>
 <h4>{{ alarmstufe?.description }}</h4>
 
-<button onclick="submit()">Click me</button>
+<h4>Was möchtest du unternehmen?</h4>
+<div *ngFor="let lebensbereich of lebensbereiche">
+  <input [(ngModel)]="selectedLebensbereichId" type="radio" [value]="lebensbereich.id"/>{{ lebensbereich.description }}
+</div>
+
+{{ selectedLebensbereichId }}

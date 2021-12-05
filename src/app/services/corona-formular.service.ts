@@ -15,4 +15,9 @@ export class CoronaFormularService {
       .get('http://localhost:8080/getCurrentAlarmstufe'); // ToDo: Refactor hardcoded URL
   }
 
+  getLebensbereiche() {
+    return this.httpClient
+      .get('http://localhost:8080/getLebensbereiche'); // ToDo: Refactor hardcoded URL
+  }
+
 }
