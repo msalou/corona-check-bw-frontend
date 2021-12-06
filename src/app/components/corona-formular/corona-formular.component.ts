@@ -27,9 +27,10 @@ export class CoronaFormularComponent implements OnInit {
     })
   }
 
-  onClick(): void {
+  onChangeRadio(): void {
     this.coronaFormularService.getMassnahmeByLebensbereich(this.selectedLebensbereichId).subscribe((data: any) => {
       this.massnahme = data;
     })
   }
+
 }
