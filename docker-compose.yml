@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+  corona-check-bw-frontend:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: corona-check-bw-frontend:latest
+    ports:
+      - 8081:80/tcp
