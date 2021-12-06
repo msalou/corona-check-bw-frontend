@@ -1,13 +1,14 @@
-<h2>Herzlich Willkommen auf dem Corona-Checker</h2>
+<h2>Herzlich Willkommen beim Corona-Checker</h2>
 <h4>Aktuell befindet sich Baden-Württemberg in der folgenden Stufe:</h4>
-<h4>{{ alarmstufe?.label }}</h4>
-<h4>{{ alarmstufe?.description }}</h4>
+<h4 class="border">{{ alarmstufe?.label }}: {{ alarmstufe?.description }}</h4>
 
 <h4>Was möchtest du unternehmen?</h4>
-<div *ngFor="let lebensbereich of lebensbereiche">
+<div class="radio" *ngFor="let lebensbereich of lebensbereiche">
   <input [(ngModel)]="selectedLebensbereichId" type="radio" [value]="lebensbereich.id"/>{{ lebensbereich.description }}
 </div>
 
-<button type="button" [disabled]="!selectedLebensbereichId" (click)="onClick()">Senden</button>
+<button class="button" type="button" [disabled]="!selectedLebensbereichId" (click)="onClick()">Senden</button>
 
-<h4>{{ massnahme?.beschreibung }}</h4>
+<div *ngIf="massnahme">
+    <h4 class="border">Aktuelle Einschränkungen:<BR>{{ massnahme?.beschreibung }}</h4>
+</div>
