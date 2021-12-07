@@ -4,8 +4,10 @@
 
 <h4>Was möchtest du unternehmen?</h4>
 <div class="radio" *ngFor="let lebensbereich of lebensbereiche">
-  <input type="radio" (change)="onChangeRadio()" [(ngModel)]="selectedLebensbereichId" [value]="lebensbereich.id"/>{{ lebensbereich.description }}
-  <div *ngIf="lebensbereich.id == selectedLebensbereichId">
+  <label>
+    <input type="radio" (change)="onChangeRadio()" [(ngModel)]="selectedLebensbereichId" [value]="lebensbereich.id"/>{{ lebensbereich.description }}
+  </label>
+  <div *ngIf="lebensbereich.id == selectedLebensbereichId && massnahme">
       <h4 class="border">Aktuelle Regelung:<BR>{{ massnahme?.beschreibung }}</h4>
   </div>
 </div>
