@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Alarmstufe } from 'src/app/models/Alarmstufe';
-import { Massnahme } from 'src/app/models/Massnahme';
 import { Lebensbereich } from 'src/app/models/Lebensbereich';
 import { CoronaFormularService } from 'src/app/services/corona-formular.service';
 
@@ -14,7 +13,12 @@ export class CoronaFormularComponent implements OnInit {
   alarmstufe: Alarmstufe | undefined;
   lebensbereiche: Lebensbereich[] | undefined;
   selectedLebensbereichId!: number;
-  massnahme: Massnahme | undefined;
+  regelung: string | undefined;
+
+  private readonly BASISSTUFE = 1;
+  private readonly WARNSTUFE = 2;
+  private readonly ALARMSTUFE_I = 3;
+  private readonly ALARMSTUFE_II = 4;
 
   constructor(private coronaFormularService: CoronaFormularService) {}
 
@@ -28,10 +32,24 @@ export class CoronaFormularComponent implements OnInit {
   }
 
   onChangeRadio(): void {
-    this.massnahme = undefined;
-    this.coronaFormularService.getMassnahmeByLebensbereich(this.selectedLebensbereichId).subscribe((data: any) => {
-      this.massnahme = data;
-    })
+    const lebensbereich = this.lebensbereiche?.filter(lebensbereich => lebensbereich.id == this.selectedLebensbereichId)[0];
+    switch (this.alarmstufe?.id) {
+      case this.BASISSTUFE:
+        this.regelung = lebensbereich?.stepBasisstufe;
+        break;
+      case this.WARNSTUFE:
+        this.regelung = lebensbereich?.stepWarnstufe;
+        break;
+      case this.ALARMSTUFE_I:
+        this.regelung = lebensbereich?.stepAlarmstufeI;
+        break;
+      case this.ALARMSTUFE_II:
+        this.regelung = lebensbereich?.stepAlarmstufeII;
+        break;
+      default:
+        this.regelung = '';
+        break;
+    }
   }
 
 }
